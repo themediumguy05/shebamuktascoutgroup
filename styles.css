@@ -1,0 +1,2626 @@
+/* ==========================================================================
+   সেবা মুক্ত স্কাউট গ্রুপ, সিরাজগঞ্জ — প্রধান স্টাইলশিট (CSS)
+   বাংলাদেশ স্কাউটস অনুমোদিত মুক্ত স্কাউট দলের অফিসিয়াল পোর্টাল
+   ========================================================================== */
+
+:root {
+  --bg: #f4f7fa;
+  --card: #ffffff;
+  --card-subtle: #f8fafc;
+  --ink: #17283a;
+  --mut: #546577;
+  --line: #d3dee8;
+  --navy: #0f2a43;
+  --navy-light: #183b5d;
+  --teal: #1c7c8c;
+  --teal-light: #e8f5f7;
+  --sand: #e3c47a;
+  --red: #c63a2f;
+  --red-light: #fdf2f2;
+  --grn: #0a8a4a;
+  --grn-light: #edf8f2;
+  --purple: #563d7c;
+  --purple-light: #f3eff9;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 2px 8px rgba(15, 42, 67, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 42, 67, 0.09);
+  --shadow-lg: 0 16px 40px rgba(15, 42, 67, 0.14);
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+/* ডার্ক থিম ভেরিয়েবল */
+[data-theme="dark"] {
+  --bg: #0b1622;
+  --card: #132335;
+  --card-subtle: #192d42;
+  --ink: #e6eef6;
+  --mut: #9fb2c4;
+  --line: #233a50;
+  --navy: #091a2a;
+  --navy-light: #11283e;
+  --teal: #4cc0d1;
+  --teal-light: #163644;
+  --sand: #eed69b;
+  --red: #e04b40;
+  --red-light: #381b1d;
+  --grn: #1bb367;
+  --grn-light: #143525;
+  --purple: #9d78d6;
+  --purple-light: #261c36;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1622;
+    --card: #132335;
+    --card-subtle: #192d42;
+    --ink: #e6eef6;
+    --mut: #9fb2c4;
+    --line: #233a50;
+    --navy: #091a2a;
+    --navy-light: #11283e;
+    --teal: #4cc0d1;
+    --teal-light: #163644;
+    --sand: #eed69b;
+    --red: #e04b40;
+    --red-light: #381b1d;
+    --grn: #1bb367;
+    --grn-light: #143525;
+    --purple: #9d78d6;
+    --purple-light: #261c36;
+  }
+}
+
+/* বেস রিসেট */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: "Hind Siliguri", "Noto Sans Bengali", sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.8;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Noto Serif Bengali", "Hind Siliguri", serif;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   স্কাউট ব্যানার ও অ্যানাউন্সমেন্ট
+   ========================================================================== */
+.scout-banner {
+  background: linear-gradient(90deg, var(--navy), var(--teal), var(--navy));
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.banner-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.scout-badge-pill {
+  background: var(--sand);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+}
+
+.banner-text {
+  font-size: 13.5px;
+}
+
+.banner-link {
+  color: var(--sand);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.banner-link:hover {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   হেডার ও ন্যাভিগেশন
+   ========================================================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  background: var(--navy);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+  transition: background-color var(--transition-fast);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ffffff;
+  border: 1.5px solid var(--sand);
+  transition: transform var(--transition-normal);
+}
+
+.brand:hover .brand-logo {
+  transform: rotate(12deg) scale(1.08);
+}
+
+.brand-text b {
+  display: block;
+  font-family: "Noto Serif Bengali", serif;
+  font-size: 17px;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.brand-text small {
+  display: block;
+  font-size: 12px;
+  color: var(--sand);
+  opacity: 0.9;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link, .dd-btn {
+  color: #ffffff;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-size: 14.5px;
+  padding: 8px 11px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.nav-link:hover, .dd-btn:hover, .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--sand);
+}
+
+/* ড্রপডাউন */
+.dd {
+  position: relative;
+}
+
+.dd-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--navy);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  z-index: 30;
+}
+
+.dd:hover .dd-menu, .dd:focus-within .dd-menu {
+  display: block;
+  animation: fadeInDown 0.2s ease forwards;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dd-menu a {
+  display: block;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.dd-menu a:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--sand);
+}
+
+.theme-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: var(--radius-full);
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.theme-btn:hover {
+  transform: rotate(25deg) scale(1.1);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.btn-nav-cta {
+  background: var(--grn);
+  color: #ffffff !important;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.btn-nav-cta:hover {
+  background: #0d9e56 !important;
+}
+
+/* মোবাইল হ্যামবার্গার */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  width: 30px;
+  height: 22px;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+@media (max-width: 960px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--navy);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 5vw 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  nav.o {
+    display: flex;
+    animation: fadeInDown 0.3s ease;
+  }
+
+  .dd-menu {
+    position: static;
+    display: block;
+    background: rgba(0, 0, 0, 0.15);
+    box-shadow: none;
+    border: 0;
+    padding-left: 16px;
+    margin: 4px 0 8px;
+  }
+
+  .theme-btn {
+    align-self: flex-start;
+    margin: 8px 0;
+  }
+}
+
+/* ==========================================================================
+   বাটন শৈলী (Buttons)
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 15.5px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 14px;
+}
+
+.btn-lg {
+  padding: 12px 28px;
+  font-size: 17px;
+}
+
+.btn-primary {
+  background: var(--grn);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #0d9e56;
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.btn-secondary:hover {
+  background: var(--teal);
+  color: #ffffff;
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.btn-outline:hover {
+  background: var(--card-subtle);
+  border-color: var(--mut);
+}
+
+/* ==========================================================================
+   হিরো সেকশন
+   ========================================================================== */
+.hero-section {
+  padding: 48px 5vw 40px;
+  background: radial-gradient(circle at 15% 20%, rgba(28, 124, 140, 0.08), transparent 60%);
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal-light);
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 13.5px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+  border: 1px solid rgba(28, 124, 140, 0.2);
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.hero-content h1 {
+  font-size: clamp(30px, 4.2vw, 48px);
+  font-weight: 800;
+  margin-bottom: 14px;
+  letter-spacing: -0.5px;
+}
+
+.highlight-text {
+  color: var(--teal);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-desc {
+  color: var(--mut);
+  font-size: 17.5px;
+  line-height: 1.75;
+  margin-bottom: 24px;
+  max-width: 580px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--mut);
+  font-weight: 500;
+}
+
+.hero-tags span {
+  display: inline-flex;
+  align-items: center;
+  background: var(--card);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+}
+
+.hero-card-frame {
+  background: linear-gradient(135deg, var(--navy), #143e62);
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.hero-card-frame::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(227, 196, 122, 0.25), transparent);
+  border-radius: 50%;
+}
+
+.scout-crest-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.crest-svg, .hero-crest-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ffffff;
+  border: 3.5px solid var(--sand);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-crest-img:hover {
+  transform: scale(1.06) rotate(3deg);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5);
+}
+
+.hero-card-info h3 {
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.hero-card-info p {
+  color: var(--sand);
+  font-size: 13.5px;
+  opacity: 0.95;
+  margin-bottom: 16px;
+}
+
+.hero-card-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 12px 8px;
+}
+
+.hero-card-stats strong {
+  display: block;
+  font-size: 18px;
+  color: var(--sand);
+  font-family: "Noto Serif Bengali", serif;
+}
+
+.hero-card-stats span {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.floating-badge {
+  position: absolute;
+  background: var(--card);
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.floating-badge i { font-size: 24px; }
+.floating-badge strong { display: block; font-size: 13.5px; }
+.floating-badge small { color: var(--mut); }
+
+.fb-top { top: 14px; left: -20px; animation: floatY 5s ease-in-out infinite; }
+.fb-bottom { bottom: 14px; right: -16px; animation: floatY 6s ease-in-out 1.5s infinite; }
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 880px) {
+  .hero-container { grid-template-columns: 1fr; }
+  .fb-top, .fb-bottom { position: static; margin-top: 12px; }
+}
+
+/* ==========================================================================
+   পরিসংখ্যান সেকশন
+   ========================================================================== */
+.stats-section {
+  padding: 16px 5vw 40px;
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.stat-card {
+  background: var(--navy);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 20px 14px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+  font-style: normal;
+  font-size: 22px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.stat-card b {
+  display: block;
+  font-size: 32px;
+  color: var(--sand);
+  font-family: "Noto Serif Bengali", serif;
+  line-height: 1.2;
+}
+
+.stat-card span {
+  font-size: 13px;
+  opacity: 0.88;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   সাধারণ সেকশন হেডার
+   ========================================================================== */
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 5vw;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 36px;
+}
+
+.section-subtitle {
+  display: inline-block;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--teal);
+  background: var(--teal-light);
+  padding: 3px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 10px;
+}
+
+.section-header h2 {
+  font-size: clamp(26px, 3.5vw, 36px);
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: var(--mut);
+  font-size: 16px;
+}
+
+/* ==========================================================================
+   স্কাউট দর্শন, মূলনীতি ও প্রতিজ্ঞা
+   ========================================================================== */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.pillar-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  text-align: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.pillar-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.pillar-card h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+  color: var(--teal);
+}
+
+.pillar-card p {
+  font-size: 14.5px;
+  color: var(--mut);
+}
+
+.promise-box {
+  background: var(--card);
+  border-left: 6px solid var(--grn);
+  border-radius: var(--radius-md);
+  padding: 26px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 10px;
+}
+
+.promise-box h3 {
+  font-size: 21px;
+  color: var(--grn);
+  margin-bottom: 8px;
+}
+
+.promise-box blockquote {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   ৭টি স্কাউট আইন
+   ========================================================================== */
+.laws-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.law-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  position: relative;
+  transition: transform var(--transition-fast);
+}
+
+.law-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--teal);
+}
+
+.law-num {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--line);
+  font-family: "Noto Serif Bengali", serif;
+}
+
+.law-card h4 {
+  font-size: 17px;
+  margin-bottom: 6px;
+  color: var(--teal);
+}
+
+.law-card p {
+  font-size: 13.5px;
+  color: var(--mut);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   ইউনিট ও প্যাট্রল ব্যবস্থা
+   ========================================================================== */
+.units-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.unit-box {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  transition: transform var(--transition-fast);
+}
+
+.unit-box:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.unit-box.featured-unit {
+  border-color: var(--grn);
+  box-shadow: 0 4px 16px rgba(10, 138, 74, 0.15);
+}
+
+.unit-box-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.unit-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.unit-badge.cub { background: #fff3cd; color: #856404; }
+.unit-badge.scout { background: var(--grn-light); color: var(--grn); }
+.unit-badge.rover { background: var(--red-light); color: var(--red); }
+
+.unit-age {
+  font-size: 12.5px;
+  color: var(--mut);
+  font-weight: 600;
+}
+
+.unit-box h4 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.unit-motto {
+  font-size: 13.5px;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.unit-desc {
+  font-size: 14px;
+  color: var(--mut);
+  line-height: 1.65;
+}
+
+/* প্যাট্রল সিস্টেম */
+.patrol-system-box {
+  background: var(--card-subtle);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+.patrol-system-box h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.patrol-system-box > p {
+  text-align: center;
+  font-size: 14.5px;
+  color: var(--mut);
+  margin-bottom: 22px;
+}
+
+.patrols-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.patrol-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  text-align: center;
+  transition: transform var(--transition-fast);
+}
+
+.patrol-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--teal);
+}
+
+.patrol-icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.patrol-card h4 {
+  font-size: 16.5px;
+  margin-bottom: 2px;
+}
+
+.patrol-card small {
+  display: block;
+  font-size: 12px;
+  color: var(--teal);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.patrol-card p {
+  font-size: 13px;
+  color: var(--mut);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   ক্যাম্পিং ও আউটডোর অ্যাডভেঞ্চার
+   ========================================================================== */
+.camping-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.camp-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.camp-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.camp-card-img {
+  height: 150px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camp-tent-bg { background: linear-gradient(135deg, var(--navy), var(--grn)); }
+.camp-hike-bg { background: linear-gradient(135deg, var(--teal), var(--navy)); }
+.camp-pioneer-bg { background: linear-gradient(135deg, #856404, var(--navy)); }
+.camp-radio-bg { background: linear-gradient(135deg, var(--purple), var(--navy)); }
+
+.camp-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-size: 11.5px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.camp-card-body {
+  padding: 20px;
+}
+
+.camp-card-body h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.camp-card-body p {
+  font-size: 13.5px;
+  color: var(--mut);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   স্কাউট ব্যাজ ও প্রশিক্ষণ পরিক্রমা
+   ========================================================================== */
+.badges-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.badge-stage {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.badge-stage.featured-stage {
+  border-color: var(--sand);
+  background: radial-gradient(circle at top right, rgba(227, 196, 122, 0.08), var(--card));
+}
+
+.stage-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+}
+
+.stage-pill {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+}
+
+.cub-bg { background: #fff3cd; color: #856404; }
+.scout-bg { background: var(--grn-light); color: var(--grn); }
+.rover-bg { background: var(--red-light); color: var(--red); }
+
+.stage-header h3 {
+  font-size: 18px;
+}
+
+.stage-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--mut);
+}
+
+.step-bullet {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+.highlight-step {
+  background: var(--card-subtle);
+  border: 1px dashed var(--sand);
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+}
+
+.highlight-step .step-bullet {
+  background: var(--sand);
+  color: var(--navy);
+  border-color: var(--sand);
+}
+
+/* ==========================================================================
+   সময়রেখা (Timeline) সেকশন
+   ========================================================================== */
+.timeline-section {
+  padding: 50px 5vw;
+}
+
+.timeline-controls {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.control-row:last-child {
+  margin-bottom: 0;
+}
+
+.filter-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mut);
+  min-width: 60px;
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bar button {
+  font: inherit;
+  font-size: 14px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.bar button:hover {
+  border-color: var(--teal);
+  transform: translateY(-2px);
+}
+
+.bar button[aria-pressed="true"] {
+  background: var(--teal);
+  color: #ffffff;
+  border-color: var(--teal);
+  box-shadow: 0 4px 10px rgba(28, 124, 140, 0.3);
+}
+
+.search-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex-grow: 1;
+  max-width: 480px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--mut);
+  font-size: 14px;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  padding: 8px 36px 8px 36px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-full);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.search-input-wrapper input:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  color: var(--mut);
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+}
+
+.counter-display {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--teal);
+  background: var(--teal-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+/* টাইমলাইন লিস্ট */
+.timeline-container {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-list {
+  list-style: none;
+  border-left: 3px solid var(--teal);
+  margin: 10px 0 10px 16px;
+  padding-left: 24px;
+  max-height: 680px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.timeline-list li {
+  position: relative;
+  margin-bottom: 22px;
+  padding: 4px 0;
+}
+
+.timeline-list li::before {
+  content: "";
+  position: absolute;
+  left: -33px;
+  top: 10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--grn);
+  border: 3px solid var(--card);
+  box-shadow: 0 0 0 2px var(--teal);
+  transition: transform var(--transition-fast);
+}
+
+.timeline-list li:hover::before {
+  transform: scale(1.3);
+  background: var(--sand);
+}
+
+.timeline-list time {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mut);
+  background: var(--bg);
+  padding: 1px 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.timeline-list h3 {
+  font-size: 16.5px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timeline-list p {
+  font-size: 14px;
+  color: var(--mut);
+  line-height: 1.6;
+}
+
+.tag {
+  font-family: inherit;
+  font-size: 12px;
+  background: var(--teal-light);
+  color: var(--teal);
+  border-radius: var(--radius-full);
+  padding: 1px 10px;
+  font-weight: 600;
+  border: 1px solid rgba(28, 124, 140, 0.2);
+}
+
+/* ==========================================================================
+   ফটো গ্যালারি
+   ========================================================================== */
+.gallery-section {
+  padding: 50px 5vw;
+}
+
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.gal-btn {
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.gal-btn.active, .gal-btn:hover {
+  background: var(--teal);
+  color: #ffffff;
+  border-color: var(--teal);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.gallery-visual {
+  height: 170px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.relief-bg { background: linear-gradient(135deg, #0a8a4a, #0f2a43); }
+.eye-bg { background: linear-gradient(135deg, #1c7c8c, #0f2a43); }
+.camp-bg { background: linear-gradient(135deg, #1d4f74, #0f2a43); }
+.radio-bg { background: linear-gradient(135deg, #563d7c, #0f2a43); }
+
+.visual-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  font-size: 11.5px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.art-svg {
+  width: 90px;
+  height: 55px;
+  opacity: 0.85;
+}
+
+.gallery-caption {
+  padding: 16px;
+}
+
+.gallery-caption h4 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.gallery-caption small {
+  color: var(--mut);
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   নেতৃত্ব ও গ্রুপ কাউন্সিল
+   ========================================================================== */
+.leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.leader-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px 18px;
+  text-align: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.leader-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.leader-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--sand);
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  border: 3px solid var(--sand);
+}
+
+.leader-avatar.vp { background: #856404; color: #fff; border-color: #eed69b; font-size: 13px; }
+.leader-avatar.sec { background: var(--teal); color: #fff; border-color: var(--teal-light); }
+.leader-avatar.gsl { background: var(--teal); color: #fff; border-color: var(--teal-light); }
+.leader-avatar.rsl { background: var(--grn); color: #fff; border-color: var(--grn-light); }
+.leader-avatar.srm { background: var(--purple); color: #fff; border-color: var(--purple-light); }
+
+.leader-card h3 {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.leader-role {
+  color: var(--teal);
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.leader-bio {
+  font-size: 13.5px;
+  color: var(--mut);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   স্কাউটে যোগদানের আবেদন ফরম
+   ========================================================================== */
+.join-scouts-section {
+  background: var(--card-subtle);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 60px 5vw;
+}
+
+.scout-form-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-md);
+}
+
+.styled-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.req {
+  color: var(--red);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(28, 124, 140, 0.15);
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+  background: var(--bg);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+}
+
+.checkbox-group label, .form-declaration label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-declaration {
+  background: var(--teal-light);
+  border: 1px solid rgba(28, 124, 140, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.form-submit-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   যোগাযোগ ও স্কাউট ডেন
+   ========================================================================== */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 28px;
+}
+
+@media (max-width: 860px) {
+  .contact-layout { grid-template-columns: 1fr; }
+}
+
+.contact-info-card {
+  background: var(--navy);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.contact-info-card h4 {
+  color: var(--sand);
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.contact-list {
+  list-style: none;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.contact-list a {
+  color: var(--teal);
+  text-decoration: underline;
+}
+
+.contact-highlight-box {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   ফুটার
+   ========================================================================== */
+.main-footer {
+  background: var(--navy);
+  color: #ffffff;
+  padding: 50px 5vw 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 860px) {
+  .footer-container { grid-template-columns: 1fr; }
+}
+
+.footer-brand b {
+  display: block;
+  font-size: 19px;
+  font-family: "Noto Serif Bengali", serif;
+  margin-bottom: 2px;
+}
+
+.footer-brand small {
+  color: var(--sand);
+  font-size: 13px;
+}
+
+.footer-text {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+.footer-col h4 {
+  color: var(--sand);
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.footer-links a {
+  opacity: 0.85;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+  color: var(--sand);
+  text-decoration: underline;
+}
+
+.footer-addr {
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.7;
+  opacity: 0.85;
+  margin-bottom: 14px;
+}
+
+.social-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.social-pills a {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12.5px;
+}
+
+.social-pills a:hover {
+  background: var(--teal);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 20px auto 0;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+/* ==========================================================================
+   ব্যাক টু টপ বাটন
+   ========================================================================== */
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--grn);
+  color: #ffffff;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+  z-index: 35;
+  box-shadow: 0 4px 14px rgba(10, 138, 74, 0.4);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+  background: #0d9e56;
+}
+
+/* ==========================================================================
+   মডাল ডায়ালগ
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 42, 67, 0.7);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.modal-overlay.show {
+  display: flex;
+  animation: modalFadeIn 0.25s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  animation: modalPop 0.3s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: 0;
+  font-size: 24px;
+  color: var(--mut);
+  cursor: pointer;
+}
+
+.modal-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--grn-light);
+  color: var(--grn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 auto 16px;
+}
+
+.modal-card h3 {
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.modal-card p {
+  font-size: 15px;
+  color: var(--mut);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.modal-token-box {
+  background: var(--card-subtle);
+  border: 1px dashed var(--teal);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-token-box small {
+  display: block;
+  font-size: 12px;
+  color: var(--mut);
+}
+
+.modal-token-box strong {
+  display: block;
+  font-size: 18px;
+  color: var(--teal);
+  letter-spacing: 1px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* অ্যাক্সেসিবিলিটি */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ==========================================================================
+   ক্লিন হিরো সেকশন ও চার্টার প্যানেল (Clean Hero & Institutional Charter)
+   ========================================================================== */
+.hero-container-clean {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: 36px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-container-clean {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+.hero-branch-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.hero-branch-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.hero-branch-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--teal);
+}
+
+.hero-branch-card .branch-icon {
+  font-size: 24px;
+}
+
+.hero-branch-card .branch-meta strong {
+  display: block;
+  font-size: 14.5px;
+  color: var(--ink);
+}
+
+.hero-branch-card .branch-meta small {
+  color: var(--mut);
+  font-size: 12px;
+}
+
+.hero-charter-panel {
+  display: flex;
+  justify-content: center;
+}
+
+.charter-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 30px 24px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  border-top: 5px solid var(--grn);
+}
+
+.charter-emblem-wrap {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  border: 4px solid var(--sand);
+  padding: 4px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.charter-crest-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.charter-badge-tag {
+  display: inline-block;
+  background: rgba(10, 138, 74, 0.12);
+  color: var(--grn);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.charter-title {
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.charter-subtitle {
+  color: var(--mut);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.charter-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 14px 0;
+}
+
+.charter-list {
+  list-style: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.charter-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.charter-list .check-icon {
+  color: var(--grn);
+  font-weight: bold;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.charter-actions {
+  text-align: center;
+}
+
+.charter-btn {
+  display: inline-block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--teal);
+  transition: color 0.2s ease;
+}
+
+.charter-btn:hover {
+  color: var(--grn);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   রোভার স্কাউট প্রোগ্রাম (Rover Scout Program Section & Tabs)
+   ========================================================================== */
+.rover-program-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 5vw;
+}
+
+.program-tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 30px;
+  background: var(--card);
+  padding: 10px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.pg-tab-btn {
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--mut);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.pg-tab-btn:hover {
+  color: var(--ink);
+  background: rgba(28, 124, 140, 0.08);
+}
+
+.pg-tab-btn.active {
+  background: var(--teal);
+  color: #ffffff;
+  border-color: var(--teal);
+  box-shadow: 0 4px 14px rgba(28, 124, 140, 0.3);
+}
+
+.pg-panel {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.pg-panel.active {
+  display: block;
+}
+
+.panel-intro-box {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 28px;
+  border-left: 5px solid var(--teal);
+}
+
+.panel-intro-box .intro-badge {
+  display: inline-block;
+  background: rgba(28, 124, 140, 0.12);
+  color: var(--teal);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 14px;
+  margin-bottom: 8px;
+}
+
+.panel-intro-box h3 {
+  font-size: 21px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.panel-intro-box p {
+  color: var(--mut);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ৪টি স্তর গ্রিড */
+.stages-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.stage-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stage-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.stage-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.stage-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--sand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Noto Serif Bengali", serif;
+  flex-shrink: 0;
+}
+
+.stage-squire .stage-number { background: #1c7c8c; color: #fff; }
+.stage-membership .stage-number { background: #0a8a4a; color: #fff; }
+.stage-training .stage-number { background: #0f2a43; color: #e3c47a; }
+.stage-service .stage-number { background: #c63a2f; color: #fff; }
+
+.stage-tag {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+}
+
+.stage-card-header h4 {
+  font-size: 18px;
+  color: var(--ink);
+  margin: 2px 0;
+}
+
+.stage-duration {
+  font-size: 12.5px;
+  color: var(--mut);
+  display: block;
+}
+
+.stage-eligibility {
+  background: rgba(28, 124, 140, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.stage-curriculum-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.curriculum-item h5 {
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.curriculum-item ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.curriculum-item li {
+  font-size: 13.5px;
+  color: var(--mut);
+  line-height: 1.6;
+  position: relative;
+  padding-left: 14px;
+}
+
+.curriculum-item li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: bold;
+}
+
+.stage-completion {
+  background: rgba(10, 138, 74, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  border-left: 3px solid var(--grn);
+}
+
+.stage-completion p {
+  font-size: 13px;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.highlight-completion {
+  background: rgba(198, 58, 47, 0.08);
+  border-left-color: var(--red);
+}
+
+/* পারদর্শিতা ব্যাজ গ্রিড */
+.proficiency-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.prof-badge-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  display: flex;
+  gap: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.prof-badge-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.badge-emblem-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(28, 124, 140, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badge-icon-lg {
+  font-size: 28px;
+}
+
+.prof-badge-info h4 {
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.badge-phase {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.prof-badge-info p {
+  color: var(--mut);
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+.badge-criteria {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+
+.badge-criteria span {
+  background: var(--bg);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+
+.highlight-badge {
+  border-color: var(--sand);
+  background: linear-gradient(180deg, var(--card) 0%, rgba(227, 196, 122, 0.05) 100%);
+}
+
+/* আর্নিং বাই লার্নিং ডিরেক্টরি */
+.earning-trades-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.trade-category-box {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cat-icon { font-size: 24px; }
+.category-header h4 { font-size: 19px; color: var(--ink); }
+
+.trade-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.trade-item {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.trade-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--teal);
+}
+
+.trade-item strong {
+  display: block;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.trade-item p {
+  color: var(--mut);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.highlight-trade {
+  border-color: var(--grn);
+  background: rgba(10, 138, 74, 0.04);
+}
+
+/* প্রেসিডেন্ট'স রোভার স্কাউট (PRS) */
+.prs-hero-card {
+  background: linear-gradient(135deg, var(--navy), #1a4163);
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 36px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 30px;
+  border: 2px solid var(--sand);
+}
+
+.prs-crown-icon { font-size: 42px; margin-bottom: 8px; }
+.prs-national-label { color: var(--sand); font-size: 13.5px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px; }
+.prs-hero-card h3 { font-size: 28px; color: #ffffff; margin-bottom: 8px; }
+.prs-hero-card p { color: rgba(255, 255, 255, 0.9); font-size: 16px; max-width: 700px; margin: 0 auto; }
+
+.prs-steps-container h4 {
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+.prs-step-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prs-step-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease;
+}
+
+.prs-step-card:hover {
+  transform: translateX(4px);
+}
+
+.step-num-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--sand);
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "Noto Serif Bengali", serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-card-body h5 {
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.step-card-body p {
+  color: var(--mut);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.highlight-prs-step {
+  border-color: var(--sand);
+  background: linear-gradient(90deg, rgba(227, 196, 122, 0.1), var(--card));
+}
+
+.highlight-prs-step .step-num-badge {
+  background: var(--red);
+  color: #fff;
+}
+
+/* মাস্টার ম্যাট্রিক্স টেবিল */
+.matrix-table-wrapper {
+  overflow-x: auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+
+.rover-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  line-height: 1.65;
+  text-align: left;
+}
+
+.rover-matrix-table th {
+  background: var(--navy);
+  color: #ffffff;
+  padding: 14px 16px;
+  font-family: "Noto Serif Bengali", serif;
+  font-size: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rover-matrix-table td {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  vertical-align: top;
+  color: var(--ink);
+}
+
+.rover-matrix-table tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+[data-theme="dark"] .rover-matrix-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.matrix-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tag-squire { background: rgba(28, 124, 140, 0.15); color: var(--teal); }
+.tag-member { background: rgba(10, 138, 74, 0.15); color: var(--grn); }
+.tag-train { background: rgba(15, 42, 67, 0.15); color: var(--ink); }
+.tag-serv { background: rgba(198, 58, 47, 0.15); color: var(--red); }
+
+/* লগ বই গাইডলাইন */
+.logbook-guidelines-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.logbook-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.log-card-icon { font-size: 30px; display: block; margin-bottom: 12px; }
+.logbook-card h4 { font-size: 18px; color: var(--ink); margin-bottom: 12px; }
+
+.logbook-card ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logbook-card li {
+  font-size: 13.5px;
+  color: var(--mut);
+  line-height: 1.65;
+  position: relative;
+  padding-left: 16px;
+}
+
+.logbook-card li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--grn);
+  font-size: 12px;
+}
+
+.highlight-log-card {
+  border-color: var(--teal);
+  border-top: 4px solid var(--teal);
+}
